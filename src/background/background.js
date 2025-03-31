@@ -14,7 +14,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (!tab.url) return;
   const url = new URL(tab.url);
   // Enables the side panel
-  if (url.origin === domain) {
+  if (url.origin.includes(domain)) {
     await chrome.sidePanel.setOptions({
       tabId,
       path: 'index.html',
