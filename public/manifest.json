@@ -20,5 +20,8 @@
   ],
   "icons": {
     "64": "logo.png"
+  },
+  "action": {
+    "default_title": "Streema"
   }
 }
