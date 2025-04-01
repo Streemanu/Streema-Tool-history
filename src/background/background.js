@@ -13,6 +13,7 @@ chrome.action.onClicked.addListener((tab) => {
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (!tab.url) return;
   const url = new URL(tab.url);
+
   // Enables the side panel
   if (url.origin.includes(domain)) {
     await chrome.sidePanel.setOptions({
@@ -21,13 +22,23 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
       enabled: true
     });
   } else {
-    // expectedSidePanelState[tabId] = false;
-    await chrome.runtime.sendMessage({ action: "closeSidePanel" });
     // Disables the side panel on all other sites
     await chrome.sidePanel.setOptions({
       tabId,
       enabled: false
     });
+
+    // expectedSidePanelState[tabId] = false;
+    chrome.runtime.sendMessage({ action: "closeSidePanel" });
   }
 });
 
+chrome.runtime.onMessage.addListener(message => {
+  console.log(message, "message")
+  // Might not be as easy if there are multiple side panels open
+  if (message.action === 'openSidepanel') {
+    chrome.windows.getCurrent(window => chrome.sidePanel.open({windowId: window.id}))
+  }
+
+  return true;
+})
