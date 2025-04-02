@@ -13,7 +13,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*/*"],
+      "matches": ["https://*.streema.com/*"],
       "js": ["assets/contentScript.js"],
       "css": []
     }

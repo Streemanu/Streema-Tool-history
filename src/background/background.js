@@ -1,4 +1,5 @@
-const domain = 'https://streema.com';
+// HIGHLIGHT DOMAIN
+const domain = 'streema.com';
 
 // background.js
 chrome.action.onClicked.addListener((tab) => {

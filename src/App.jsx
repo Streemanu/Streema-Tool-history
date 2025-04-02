@@ -6,7 +6,8 @@ import Tasks from './pages/Task';
 import Login from './pages/Login'; 
 import ProtectedRoute from './auth/ProtectedRoute';
 
-const domain = 'https://streema.com';
+// HIGHLIGHT DOMAIN
+const domain = 'streema.com';
 
 
 const App = () => {
